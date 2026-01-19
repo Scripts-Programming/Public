@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROline Channel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Rubik', sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* עיצוב התמונה הראשית */
+        .image-container {
+            text-align: center;
+        }
+
+        .trigger-image {
+            max-width: 300px; /* גודל התמונה */
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .trigger-image:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .click-hint {
+            margin-top: 10px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* עיצוב הפופאפ (המודל) */
+        .modal {
+            display: none; /* מוסתר כברירת מחדל */
+            position: fixed; 
+            z-index: 1000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0,0,0,0.6); /* רקע כהה שקוף */
+            backdrop-filter: blur(5px); /* טשטוש הרקע */
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.4s;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 450px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            position: relative;
+            animation: slideUp 0.4s;
+            border-top: 5px solid #d4af37; /* פס זהב יוקרתי למעלה */
+        }
+
+        /* כפתור סגירה */
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .close-btn:hover {
+            color: #000;
+        }
+
+        /* עיצוב הטקסט בתוך הפופאפ */
+        h2 {
+            color: #333;
+            margin-top: 0;
+            font-size: 1.4rem;
+        }
+
+        p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .highlight {
+            color: #d4af37; /* צבע זהב */
+            font-weight: 700;
+        }
+
+        .price-box {
+            background-color: #fff8e1;
+            color: #d84315;
+            padding: 10px;
+            border-radius: 10px;
+            font-weight: bold;
+            margin: 15px 0;
+            display: inline-block;
+            border: 1px dashed #d84315;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            margin-top: 10px;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .contact-btn:hover {
+            background-color: #000;
+        }
+
+        /* אנימציות */
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        @keyframes slideUp {
+            from {transform: translateY(50px); opacity: 0;}
+            to {transform: translateY(0); opacity: 1;}
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="image-container">
+        <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/692c64d2d939d3afe0fb6750/3e56d5e6c_image.png" 
+             alt="PROline Channel" 
+             class="trigger-image" 
+             onclick="openModal()">
+        <div class="click-hint">👆 לחצו על התמונה לפרטים</div>
+    </div>
+
+    <div id="myModal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModalBtn()">&times;</span>
+            
+            <h2>ערוץ זה הוקם באמצעות מערכת <span class="highlight">PROline</span> החדשנית 💎</h2>
+            
+            <p>רוצים גם אתם ערוץ מקצועי עם יכולות קצה?<br>
+            הבשורה בדרך... אוטוטו תוכלו לקבל ערוץ כזה במחיר המשתלם ביותר שקיים!</p>
+            
+            <div class="price-box">
+                🔥 החל מ-15 ש"ח לחודש בלבד.
+            </div>
+            
+            <br>
+            <a href="mailto:ADMIN@MIIL-NIOL.TOP" class="contact-btn">
+                צרו קשר לפרטים: ADMIN@MIIL-NIOL.TOP
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // פונקציות לפתיחה וסגירה של הפופאפ
+        function openModal() {
+            document.getElementById("myModal").style.display = "flex";
+        }
+
+        function closeModalBtn() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        // סגירה בלחיצה על הרקע השחור
+        function closeModal(event) {
+            if (event.target.id === "myModal") {
+                document.getElementById("myModal").style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>
